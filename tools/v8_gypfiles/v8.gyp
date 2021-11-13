@@ -1623,7 +1623,12 @@
           }],
           ['clang or OS!="win"', {
             'conditions': [
-              ['_toolset == "host" and host_arch == "x64" or _toolset == "target" and target_arch=="x64"', {
+              ['_toolset == "host" and host_arch == "x64" and (target_arch == "arm" or target_arch == "ia32")', {
+                'sources': [
+                  '<(V8_ROOT)/src/heap/base/asm/ia32/push_registers_asm.cc',
+                ],
+              }],
+              ['_toolset == "host" and host_arch == "x64" and (target_arch == "x64" or target_arch == "arm64") or (_toolset == "target" and target_arch == "x64")', {
                 'sources': [
                   '<(V8_ROOT)/src/heap/base/asm/x64/push_registers_asm.cc',
                 ],
